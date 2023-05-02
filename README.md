@@ -2,4 +2,6 @@
 ## sprint 1
 
 ### »Cyber Flowers« by Roman Verostko
-![Cyber Flowers](img/cyber_duet_red_300.jpg) ![Cyber Flowers](img/cyber_gr_iv_300.jpg) ![Cyber Flowers](img/cybervii_300.jpg) 
+![Cyber Flowers](img/cyber_duet_red_300.jpg) ![Cyber Flowers](img/cyber_gr_iv_300.jpg) ![Cyber Flowers](img/cybervii_300.jpg)
+http://dada.compart-bremen.de/item/artwork/916
+[compArt: »Cyber Flowers« by Roman Verostko](http://dada.compart-bremen.de/item/artwork/916)
