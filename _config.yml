@@ -1,0 +1,7 @@
+# theme: jekyll-theme-cayman
+remote_theme: pages-themes/leap-day@v0.2.0
+title: COLAB sprint 1
+description: Creative coding
+show_downloads: "true"
+plugins:
+  - jemoji
