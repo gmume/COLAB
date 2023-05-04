@@ -1,29 +1,31 @@
-let widthW = window.innerWidth;
-let heightW = window.innerHeight;
-let vec = [];
-
+let rot = 0;
+let x = 0;
+let y = 0;
 
 function setup(){
-  createCanvas(widthW, heightW);
+  createCanvas(window.innerWidth, window.innerHeight);
 
   background(0);
-  frameRate(20);
-  stroke(100, 100, 100, 100);
-  strokeWeight(2);
-
-  for(let i = 0; i <= 10; i += 2){
-
-    vec[i] = createVector(widthW / 2 - widthW / 4 , heightW / 2 + i);
-    vec[i + 1] = createVector(widthW / 2 + widthW / 4 , heightW / 2 + i);
-    
-    line(vec[i].x, vec[i].y, vec[i + 1].x, vec[i + 1].x);
-
-  }
-
-  console.log(vec);
-  console.log("blubb");
+  frameRate(10);
+  stroke(100, 100, 100);
+  strokeWeight(5);
+  noFill();
 }
 
 function draw(){
+  resetMatrix();
+  applyMatrix(1, rot, -rot, 1, x, y)
+  bezier(850, 400, 100, 100, 900, 900, 350, 1200);
 
+  rot += map(noise(rot), 0, 1, 0, 0.1);
+  x += noise(x / 100);
+  y -= noise(y / 100);
+}
+
+function path() {
+  //create random path with x,y within canvas
+}
+
+function rotation() {
+  //create randomly turning rotation
 }
