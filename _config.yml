@@ -1,5 +1,5 @@
 # theme: jekyll-theme-cayman
-remote_theme: topics/jekyll-theme # pages-themes/leap-day@v0.2.0
+remote_theme: nielsenramon/chalk # pages-themes/leap-day@v0.2.0
 title: COLAB sprint 1
 description: Creative coding
 show_downloads: "true"
