@@ -86,77 +86,8 @@ function draw(){
   let staticX = noise(t);
   let staticY = noise(t*2);
 
-  let moveUnitX = 0;
-  let moveUnitY = 0;
-
-  let noiseMultiply = map(Math.abs(rectCenterX - centerX), 0, centerX, 0, 1);
-  let staticMultiply = 1 - noiseMultiply; 
-
-  if(rectCenterX > centerX + innerCanvasX/2  && rectCenterY > centerY + innerCanvasY/2 ){
-    //bottom right
-    moveUnitX = -(noiseX * noiseMultiply + staticX * staticMultiply)*50;
-
-    moveUnitY = -(noiseY * noiseMultiply + staticY * staticMultiply)*50;
-
-  }else if(rectCenterX > centerX + innerCanvasX/2 && rectCenterY < centerY - innerCanvasY/2){
-    //top right
-    moveUnitX = -(noiseX * noiseMultiply + staticX * staticMultiply)*50;
-
-    moveUnitY = (noiseY * noiseMultiply + staticY * staticMultiply)*50;
-
-  }else if(rectCenterX < centerX - innerCanvasX/2 && rectCenterY > centerY + innerCanvasY/2){
-    //bottom left
-    moveUnitX = (noiseX * noiseMultiply + staticX * staticMultiply)*50;
-
-    moveUnitY = -(noiseY * noiseMultiply + staticY * staticMultiply)*50;
-
-
-  }else if(rectCenterX < centerX - innerCanvasX/2 && rectCenterY < centerY - innerCanvasY/2){
-    //top left
-    moveUnitX = (noiseX * noiseMultiply + staticX * staticMultiply)*50;
-
-    moveUnitY = (noiseY * noiseMultiply + staticY * staticMultiply)*50;
-
-  }else if(rectCenterY < centerY - innerCanvasY/2){
-    //top middle
-    moveUnitX = noiseX * 50;
-
-    moveUnitY = (noiseY * noiseMultiply + staticY * staticMultiply)*50;
-
-  }else if(rectCenterX > centerX - innerCanvasX/2){
-    //right middle
-    moveUnitX = -(noiseX * noiseMultiply + staticX * staticMultiply)*50;
-
-    moveUnitY = noiseY * 50;
-
-
-  }else if(rectCenterY > centerY - innerCanvasY/2){
-    //bottom middle
-    moveUnitX = noiseX * 50;
-
-    moveUnitY = -(noiseY * noiseMultiply + staticY * staticMultiply)*50;
-
-  }else if(rectCenterX < centerX - innerCanvasX/2){
-  //left middle
-  moveUnitX = (noiseX * noiseMultiply + staticX * staticMultiply)*50;
-
-  moveUnitY = noiseY * 50;
-
-}else{
-    //center
-    moveUnitX = noiseX * 50;
-    moveUnitY = noiseY * 50;
-  }
-
-
-  
-
-
-  console.log(noiseMultiply, staticMultiply);
-  
-  noFill();
-  noStroke();
-  rect(posX, posY, innerCanvasX, innerCanvasY);
+  let moveUnitX = noiseX * 50;
+  let moveUnitY = noiseY * 50;
 
   stroke(200);
   noFill();
