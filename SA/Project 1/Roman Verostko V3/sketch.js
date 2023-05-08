@@ -1,47 +1,18 @@
 let t = 0;
 
-
-//let width = window.innerWidth;
-
 let centerX = window.innerWidth/2;
 let centerY = window.innerHeight/2;
 
-let p1x = 0;
-let p1y = 0;
+let baseCurve = [];
 
-let p2x = 0;
-let p2y = 0;
+let borderLowX = 0.3;
+let borderHighX = 0.7;
+let borderLowY = 0.4;
+let borderHighY = 0.6;
 
-let p3x = 0;
-let p3y = 0;
-
-let p4x = 0;
-let p4y = 0;
-
-let p5x = 0;
-let p5y = 0;
-
-let p6x = 0;
-let p6y = 0;
-
-let p7x = 0;
-let p7y = 0;
-
-let p8x = 0;
-let p8y = 0;
-
-let borderLow = 0.3;
-let borderHigh = 0.7;
-
-let innerCanvasX = window.innerWidth * (borderHigh - borderLow);
-let innerCanvasY = window.innerHeight * (borderHigh - borderLow);
-
-let posX = window.innerWidth * borderLow;
-let posY = window.innerHeight * borderLow;
-
-let rectCenterX = posX + innerCanvasX/2;
-let rectCenterY = posY + innerCanvasY/2;
-
+let r = 0;
+let g = 0;
+let b = 0;
 
 
 function setup(){
@@ -50,29 +21,36 @@ function setup(){
   background(255);
   frameRate(10);
 
-  p1x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p1y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
 
-  p2x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p2y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
 
-  p3x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p3y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
+  /// Define base curve semi randomly
+  baseCurve[0] = window.innerWidth*borderLowX -20;
+  baseCurve[1] = window.innerHeight/2;
 
-  p4x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p4y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
+  baseCurve[2] = window.innerWidth*borderLowX;
+  baseCurve[3] = window.innerHeight / 2;
 
-  p5x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p5y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
+  baseCurve[4] = random(window.innerWidth*borderLowX, window.innerWidth/2);
+  baseCurve[5] = random(window.innerHeight*borderLowY, window.innerHeight*borderHighY);
 
-  p6x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p6y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
+  baseCurve[6] = random(window.innerWidth*borderLowX, window.innerWidth*borderHighX);
+  baseCurve[7] = random(window.innerHeight*borderLowY, window.innerHeight*borderHighY);
 
-  p7x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p7y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
+  baseCurve[8] = random(window.innerWidth/2, window.innerWidth*borderHighX);
+  baseCurve[9] = random(window.innerHeight*borderLowY, window.innerHeight*borderHighY);
 
-  p8x = random(window.innerWidth*borderLow, window.innerWidth*borderHigh);
-  p8y = random(window.innerHeight*borderLow, window.innerHeight*borderHigh);
+  baseCurve[10] = window.innerWidth*borderHighX;
+  baseCurve[11] = window.innerHeight/2;
+
+  baseCurve[12] = window.innerWidth*borderHighX +20;
+  baseCurve[13] = window.innerHeight/2;
+
+  
+  r = random(130, 230);
+  g = random(130, 230);
+  b = random(130, 230);
+  
+
 
 }
 
@@ -89,24 +67,38 @@ function draw(){
   let moveUnitX = noiseX * 50;
   let moveUnitY = noiseY * 50;
 
-  stroke(200);
+  stroke(r, g, b, (255-t*200));
   noFill();
   beginShape();
-    curveVertex(p1x,p1y);
-    curveVertex(p2x,p2y);
-    curveVertex(p3x,p3y);
-    curveVertex(p4x,p4y);
-    curveVertex(p5x,p5y);
-    curveVertex(p6x,p6y);
-    curveVertex(p7x,p7y);
-    //curveVertex(p8x,p8y);
+    for(let i = 0; i < baseCurve.length; i+=2){
+      curveVertex(baseCurve[i], baseCurve[i+1]);
+    };
   endShape();
 
- 
+  fill(0);
+
+  for(let i = 0; i < baseCurve.length; i+=2){
+    ellipse(baseCurve[i], baseCurve[i+1]);
+  };
+
+  /*for(let i = 0; i < baseCurve.length; i+=2){
+    baseCurve[i] = baseCurve[i] + (mouseX - baseCurve[i]) * 0.04;
+    baseCurve[i+1] = baseCurve[i+1] + (mouseY - baseCurve[i+1]) * 0.04;
+  };*/
+
+
+  let moveX = (mouseX - baseCurve[6]) * 0.05;
+  let moveY = (mouseY - baseCurve[7]) * 0.05;
+  //console.log(moveX, moveY);
+
+  for(let i = 0; i < baseCurve.length; i+=2){
+    baseCurve[i] = baseCurve[i] + moveX;
+    baseCurve[i+1] = baseCurve[i+1] + moveY;
+  };
 
 
   t += 0.01; 
-
+/*
   p1x += moveUnitX;
   p1y += moveUnitY;
 
@@ -136,5 +128,6 @@ function draw(){
 
   rectCenterX = posX + innerCanvasX/2;
   rectCenterY = posY + innerCanvasY/2;
+  */
 
 }
