@@ -10,8 +10,8 @@ function setup(){
 
   background(0);
   frameRate(20);
-  stroke(100, 100, 100, 100);
-  strokeWeight(2);
+  stroke(100, 100, 100);
+  strokeWeight(3);
 
   for(let i = 0; i <= 99; i += 2){
 

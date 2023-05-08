@@ -4,7 +4,6 @@ let countSteps;
 let oldFrameCount;
 let directionFactorX;
 let directionFactorY;
-let angleFactor;
 let shiftX;
 let shiftY;
 let lineStart;
@@ -29,7 +28,6 @@ function setup() {
   shiftY = 1;
   directionFactorX = 1;
   directionFactorY = 1;
-  angleFactor = 1;
   lineStart     = createVector(0, 0);
   controlPoint1 = createVector(random(0, 250), random(0, 250));
   lineMiddle    = createVector(random(0, 250), random(0, 250));
@@ -48,14 +46,13 @@ function draw() {
   createLine();
   shiftX += 1 * directionFactorX;
   shiftY += 1 * directionFactorY;
-  angle += 0.2 * angleFactor;
+  angle += 0.2;
 }
 
 function changeDirection() {
-  countSteps = random(80, 200);
-  directionFactorX = map(noise(random(0, 10)), 0, 1, -1, 1);
-  directionFactorY = map(noise(random(0, 10)), 0, 1, -1, 1);
-  angleFactor = random([-1, 1]);
+  countSteps = random(20, 100);
+  directionFactorX = random([-1, 1]);
+  directionFactorY = random([-1, 1]);
   oldFrameCount = frameCount;
 }
 

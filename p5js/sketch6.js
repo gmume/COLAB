@@ -4,7 +4,6 @@ let countSteps;
 let oldFrameCount;
 let directionFactorX;
 let directionFactorY;
-let angleFactor;
 let shiftX;
 let shiftY;
 let lineStart;
@@ -23,14 +22,14 @@ function setup() {
   stroke(100, 100, 100, 100);
   strokeWeight(1);
 
-  countSteps = random(5, 100);
-  oldFrameCount = frameCount;
-  shiftX = 1;
-  shiftY = 1;
-  directionFactorX = 1;
-  directionFactorY = 1;
-  angleFactor = 1;
-  lineStart     = createVector(0, 0);
+  // countSteps = random(5, 100);
+  // oldFrameCount = frameCount;
+  // shiftX = 1;
+  // shiftY = 1;
+  // directionFactorX = 1;
+  // directionFactorY = 1;
+  // lineStart     = createVector(0, 0);
+  lineStart     = createVector(random(0, 250), random(0, 250));
   controlPoint1 = createVector(random(0, 250), random(0, 250));
   lineMiddle    = createVector(random(0, 250), random(0, 250));
   controlPoint2 = createVector(random(0, 250), random(0, 250));
@@ -39,23 +38,23 @@ function setup() {
 
 function draw() {
 
-  if(frameCount > oldFrameCount + countSteps) {
-    changeDirection();
-  }
+  // if(frameCount > oldFrameCount + countSteps) {
+  //   changeDirection();
+  // }
 
-  translate(width / 2 + shiftX, height / 2 + shiftY);
+  // translate(width / 2 + shiftX, height / 2 + shiftY);
+  translate(width / 2, height / 2);
   rotate(angle % 360);
   createLine();
-  shiftX += 1 * directionFactorX;
-  shiftY += 1 * directionFactorY;
-  angle += 0.2 * angleFactor;
+  // shiftX += 1 * directionFactorX;
+  // shiftY += 1 * directionFactorY;
+  angle += 0.3;
 }
 
 function changeDirection() {
-  countSteps = random(80, 200);
-  directionFactorX = map(noise(random(0, 10)), 0, 1, -1, 1);
-  directionFactorY = map(noise(random(0, 10)), 0, 1, -1, 1);
-  angleFactor = random([-1, 1]);
+  countSteps = random(20, 100);
+  directionFactorX = random([-1, 1]);
+  directionFactorY = random([-1, 1]);
   oldFrameCount = frameCount;
 }
 
