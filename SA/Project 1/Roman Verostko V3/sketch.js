@@ -57,16 +57,6 @@ function setup(){
 function draw(){
   // here you draw to the screen
 
-
-  let noiseX = noise(t) - 0.5;
-  let noiseY = noise(t*2) -0.5;
-
-  let staticX = noise(t);
-  let staticY = noise(t*2);
-
-  let moveUnitX = noiseX * 50;
-  let moveUnitY = noiseY * 50;
-
   stroke(r, g, b, (255-t*200));
   noFill();
   beginShape();
@@ -81,11 +71,6 @@ function draw(){
     ellipse(baseCurve[i], baseCurve[i+1]);
   };
 
-  /*for(let i = 0; i < baseCurve.length; i+=2){
-    baseCurve[i] = baseCurve[i] + (mouseX - baseCurve[i]) * 0.04;
-    baseCurve[i+1] = baseCurve[i+1] + (mouseY - baseCurve[i+1]) * 0.04;
-  };*/
-
 
   let moveX = (mouseX - baseCurve[6]) * 0.05;
   let moveY = (mouseY - baseCurve[7]) * 0.05;
@@ -98,36 +83,5 @@ function draw(){
 
 
   t += 0.01; 
-/*
-  p1x += moveUnitX;
-  p1y += moveUnitY;
-
-  p2x += moveUnitX;
-  p2y += moveUnitY;
-
-  p3x += moveUnitX;
-  p3y += moveUnitY;
-
-  p4x += moveUnitX;
-  p4y += moveUnitY;
-
-  p5x += moveUnitX;
-  p5y += moveUnitY;
-
-  p6x += moveUnitX;
-  p6y += moveUnitY;
-
-  p7x += moveUnitX;
-  p7y += moveUnitY;
-
-  p8x += moveUnitX;
-  p8y += moveUnitY;
-
-  posX += moveUnitX;
-  posY += moveUnitY;
-
-  rectCenterX = posX + innerCanvasX/2;
-  rectCenterY = posY + innerCanvasY/2;
-  */
 
 }

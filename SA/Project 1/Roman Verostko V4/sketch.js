@@ -4,12 +4,15 @@ let centerX = window.innerWidth/2;
 let centerY = window.innerHeight/2;
 
 let baseCurve = [];
+let newCurve = [];
+let allCurves = [];
 
 let borderLowX = 0.3;
 let borderHighX = 0.7;
 let borderLowY = 0.4;
 let borderHighY = 0.6;
 
+let strokeColor = 0;
 let r = 0;
 let g = 0;
 let b = 0;
@@ -45,89 +48,52 @@ function setup(){
   baseCurve[12] = window.innerWidth*borderHighX +20;
   baseCurve[13] = window.innerHeight/2;
 
-  
+  allCurves.push(baseCurve);
+
+
   r = random(130, 230);
   g = random(130, 230);
   b = random(130, 230);
-  
 
+  strokeColor = color(r, g, b);
+  
+  
+  //console.log(allCurves);
 
 }
 
 function draw(){
-  // here you draw to the screen
+  background(255);
 
+  //draw all curves
+  for(let i = 0; i < allCurves.length; i++){
 
-  let noiseX = noise(t) - 0.5;
-  let noiseY = noise(t*2) -0.5;
+    //fading
+    strokeColor.setAlpha(255 - map(i, 0, 100, 0, 255));
+    stroke(strokeColor);
+    noFill();
 
-  let staticX = noise(t);
-  let staticY = noise(t*2);
-
-  let moveUnitX = noiseX * 50;
-  let moveUnitY = noiseY * 50;
-
-  stroke(r, g, b, (255-t*200));
-  noFill();
-  beginShape();
-    for(let i = 0; i < baseCurve.length; i+=2){
-      curveVertex(baseCurve[i], baseCurve[i+1]);
-    };
-  endShape();
-
-  fill(0);
-
-  for(let i = 0; i < baseCurve.length; i+=2){
-    ellipse(baseCurve[i], baseCurve[i+1]);
+    beginShape();
+      for(let j = 0; j < allCurves[i].length; j+=2){
+        curveVertex(allCurves[i][j], allCurves[i][j+1]);
+      };
+    endShape();
   };
 
-  /*for(let i = 0; i < baseCurve.length; i+=2){
-    baseCurve[i] = baseCurve[i] + (mouseX - baseCurve[i]) * 0.04;
-    baseCurve[i+1] = baseCurve[i+1] + (mouseY - baseCurve[i+1]) * 0.04;
-  };*/
+  // define move unit for new curve
+  let moveX = (mouseX - allCurves[allCurves.length-1][6]) * 0.05;
+  let moveY = (mouseY - allCurves[allCurves.length-1][7]) * 0.05;
 
-
-  let moveX = (mouseX - baseCurve[6]) * 0.05;
-  let moveY = (mouseY - baseCurve[7]) * 0.05;
-  //console.log(moveX, moveY);
-
+  //create new curve array
   for(let i = 0; i < baseCurve.length; i+=2){
-    baseCurve[i] = baseCurve[i] + moveX;
-    baseCurve[i+1] = baseCurve[i+1] + moveY;
-  };
+    newCurve.push(allCurves[allCurves.length-1][i] + moveX);
+    newCurve.push(allCurves[allCurves.length-1][i+1] + moveY);
+  }
+
+  allCurves.push(newCurve);
+  newCurve = [];
 
 
-  t += 0.01; 
-/*
-  p1x += moveUnitX;
-  p1y += moveUnitY;
-
-  p2x += moveUnitX;
-  p2y += moveUnitY;
-
-  p3x += moveUnitX;
-  p3y += moveUnitY;
-
-  p4x += moveUnitX;
-  p4y += moveUnitY;
-
-  p5x += moveUnitX;
-  p5y += moveUnitY;
-
-  p6x += moveUnitX;
-  p6y += moveUnitY;
-
-  p7x += moveUnitX;
-  p7y += moveUnitY;
-
-  p8x += moveUnitX;
-  p8y += moveUnitY;
-
-  posX += moveUnitX;
-  posY += moveUnitY;
-
-  rectCenterX = posX + innerCanvasX/2;
-  rectCenterY = posY + innerCanvasY/2;
-  */
+  t += 1;
 
 }
