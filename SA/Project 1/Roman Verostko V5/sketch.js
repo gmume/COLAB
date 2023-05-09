@@ -77,11 +77,15 @@ function draw() {
   background(255);
 
   // dynamic curve
-  let dynaMouseX = (mouseX - baseCurve[6]) * 0.01;
-  let dynaMouseY = (mouseY - baseCurve[7]) * 0.01;
+  //let dynaMouseX = (mouseX - baseCurve[6]) * 0.01;
+  //let dynaMouseY = (mouseY - baseCurve[7]) * 0.01;
+  let dynaMouseX = (mouseX - window.innerWidth / 2) * 0.01;
+  let dynaMouseY = (mouseY - window.innerHeight / 2) * 0.01;
 
-  dynaX = dynaY + dynaMouseX;
+  dynaX = dynaX + dynaMouseX;
   dynaY = dynaY + dynaMouseY;
+
+  console.log(dynaMouseX, dynaMouseY);
 
   //draw all curves
   for (let i = 0; i < allCurves.length; i++) {
@@ -118,12 +122,16 @@ function draw() {
     };
     endShape();
   };
-  
+
 
   // define move unit for new curve
-  let moveX = (mouseX - allCurves[allCurves.length - 1][6]) * 0.05;
-  let moveY = (mouseY - allCurves[allCurves.length - 1][7]) * 0.05;
+  let moveX = (mouseX - allCurves[allCurves.length - 1][6]) /** 0.02*/;
+  let moveY = (mouseY - allCurves[allCurves.length - 1][7]) /** 0.02*/;
 
+  moveX = map(moveX, -window.width/2, window.width/2, -8, 8);
+  moveY = map(moveY, -window.height/2, window.height/2, -8, 8);
+
+  console.log(moveX, moveY);
   //create new curve array
   if(allCurves.length < maxCurves){
     for (let i = 0; i < baseCurve.length; i += 2) {
