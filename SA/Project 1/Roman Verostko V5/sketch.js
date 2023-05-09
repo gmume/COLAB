@@ -70,7 +70,6 @@ function setup() {
   strokeColor = color(r, g, b);
 
 
-  //console.log(allCurves);
 
 }
 
@@ -78,47 +77,24 @@ function draw() {
   background(255);
 
   // dynamic curve
-  //let dynaMouseX = (mouseX - allCurves[allCurves.length - 1][6]) * 0.05;
-  //let dynaMouseY = (mouseY - allCurves[allCurves.length - 1][7]) * 0.05;
-
   let dynaMouseX = (mouseX - baseCurve[6]) * 0.01;
   let dynaMouseY = (mouseY - baseCurve[7]) * 0.01;
 
-  /*
-  if(dynaMouseX < 0){
-    dynaX --;
-  }else{
-    dynaX ++;
-  }
-
-  if(dynaMouseY < 0){
-    dynaY --
-  }else{
-    dynaY ++;
-  }*/
-
   dynaX = dynaY + dynaMouseX;
   dynaY = dynaY + dynaMouseY;
-  //console.log(dynaMouseX, dynaMouseY); 
-
-
 
   //draw all curves
   for (let i = 0; i < allCurves.length; i++) {
 
-    //fading
-  
+    //fading opacity
     if(i <= maxCurves/2){
       opac = i*1.3;
     }else{
       opac = maxCurves/2 + (maxCurves/2 - i*1.3);
-
     };
-
     strokeColor.setAlpha(opac);
     stroke(strokeColor);
     noFill();
-
     beginShape();
     for (let j = 0; j < allCurves[i].length; j += 14) {
       //nothing
@@ -142,20 +118,21 @@ function draw() {
     };
     endShape();
   };
+  
 
   // define move unit for new curve
   let moveX = (mouseX - allCurves[allCurves.length - 1][6]) * 0.05;
   let moveY = (mouseY - allCurves[allCurves.length - 1][7]) * 0.05;
 
-
-
   //create new curve array
-  for (let i = 0; i < baseCurve.length; i += 2) {
-    newCurve.push(allCurves[allCurves.length - 1][i] + moveX);
-    newCurve.push(allCurves[allCurves.length - 1][i + 1] + moveY);
-  }
-
-  allCurves.push(newCurve);
+  if(allCurves.length < maxCurves){
+    for (let i = 0; i < baseCurve.length; i += 2) {
+      newCurve.push(allCurves[allCurves.length - 1][i] + moveX);
+      newCurve.push(allCurves[allCurves.length - 1][i + 1] + moveY);
+    };
+  
+    allCurves.push(newCurve);
+  };
+  
   newCurve = [];
-
 }
