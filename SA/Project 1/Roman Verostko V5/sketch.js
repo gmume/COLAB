@@ -1,11 +1,10 @@
-let t = 0;
-
 let centerX = window.innerWidth / 2;
 let centerY = window.innerHeight / 2;
 
 let baseCurve = [];
 let newCurve = [];
 let allCurves = [];
+let maxCurves = 400;
 
 let borderLowX = 0.3;
 let borderHighX = 0.7;
@@ -13,12 +12,16 @@ let borderLowY = 0.4;
 let borderHighY = 0.6;
 
 let strokeColor = 0;
+let o = 0;
+let opac = 0;
+
 let r = 0;
 let g = 0;
 let b = 0;
 
 let dynaX = 0;
 let dynaY = 0;
+
 
 
 function setup() {
@@ -104,16 +107,17 @@ function draw() {
   for (let i = 0; i < allCurves.length; i++) {
 
     //fading
-    strokeColor.setAlpha(255 - map(i, 0, 200, 0, 255));
+  
+    if(i <= maxCurves/2){
+      opac = i*1.3;
+    }else{
+      opac = maxCurves/2 + (maxCurves/2 - i*1.3);
+
+    };
+
+    strokeColor.setAlpha(opac);
     stroke(strokeColor);
     noFill();
-    /*
-    beginShape();
-      for(let j = 0; j < allCurves[i].length; j+=2){
-        curveVertex(allCurves[i][j], allCurves[i][j+1]);
-      };
-    endShape();
-    */
 
     beginShape();
     for (let j = 0; j < allCurves[i].length; j += 14) {
@@ -153,8 +157,5 @@ function draw() {
 
   allCurves.push(newCurve);
   newCurve = [];
-
-
-  t += 1;
 
 }
