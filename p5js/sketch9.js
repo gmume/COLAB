@@ -7,61 +7,35 @@ let shiftY;
 let directionFactorX;
 let directionFactorY;
 let angleFactor;
+let pivot;
 let lineStart;
 let controlPoint1;
 let lineMiddle;
 let controlPoint2;
 let lineEnd;
 
-let sliderAngle;
-let sliderCountStepsMin;
-let sliderCountStepsMax;
-let sliderSpeed;
-
 function setup() {
   createCanvas(window.innerWidth * 0.9, window.innerHeight * 0.9);
+  frameRate(200);
   angleMode(DEGREES);
   noFill();
   strokeWeight(1);
   background(360);
 
-  group = createDiv('');
-  group.position(30, 30);  
-  
-  sliderAngle = createSlider(0.0, 0.5, 0.3, 0.1);
-  sliderAngle.parent(group);
-  labelSliderAngle = createSpan("angle&#8195");
-  labelSliderAngle.parent(group);
-  
-  sliderCountStepsMin = createSlider(10, 200, 100, 10);
-  sliderCountStepsMin.parent(group);
-  labelSliderCountStepsMin = createSpan("min step&#8195");
-  labelSliderCountStepsMin.parent(group);
-
-  sliderCountStepsMax = createSlider(200, 500, 300, 10);
-  sliderCountStepsMax.parent(group);
-  labelSliderCountStepsMax = createSpan("max step&#8195");
-  labelSliderCountStepsMax.parent(group);
-
-  sliderSpeed = createSlider(10, 100, 30, 10);
-  sliderSpeed.parent(group);
-  labelSliderSpeed = createSpan('speed');
-  labelSliderSpeed.parent(group);
-
-  frameRate(sliderSpeed.value());
   sizeLine = 280;
-  countSteps = random(sliderCountStepsMin.value(), sliderCountStepsMax.value());
+  countSteps = random(5, 100);
   oldFrameCount = frameCount;
   shiftX = 1;
   shiftY = 1;
   directionFactorX = 1;
   directionFactorY = 1;
   angleFactor = 1;
+  pivot = createVector(0, 0);
   lineStart     = createVector(0, 0);
   controlPoint1 = createVector(random(0, sizeLine), random(0, sizeLine));
   lineMiddle    = createVector(random(0, sizeLine), random(0, sizeLine));
   controlPoint2 = createVector(random(0, sizeLine), random(0, sizeLine));
-  lineEnd       = createVector(random(0, sizeLine), random(0, sizeLine));  
+  lineEnd       = createVector(random(0, sizeLine), random(0, sizeLine));
 }
 
 function draw() {
@@ -69,29 +43,28 @@ function draw() {
     changeDirection();
   }
 
-  frameRate(sliderSpeed.value());
   stroke(map(noise(frameCount), 0, 1, 0, 100) % 100, angle % 100, angle % 100, 60);
   translate(width / 2 + shiftX, height / 2 + shiftY);
   rotate(angle % 360);
   createLine();
 
-  if(shiftX + 1 * directionFactorX < width / 2 - sizeLine * 1.2 && shiftX + 1 * directionFactorX >  sizeLine * 2.2 - width / 2) {
+  if(shiftX + 1 * directionFactorX < width / 2 - sizeLine * 2.2 && shiftX + 1 * directionFactorX >  sizeLine * 2.2 - width / 2) {
     shiftX += 1 * directionFactorX;
   } else {
     shiftX -= 1 * directionFactorX;
   }
   
-  if(shiftY + 1 * directionFactorY < height / 2 - sizeLine * 1.2 && shiftY + 1 * directionFactorY >   sizeLine * 2.2 - height / 2) {
+  if(shiftY + 1 * directionFactorY < height / 2 - sizeLine * 2.2 && shiftY + 1 * directionFactorY >   sizeLine * 2.2 - height / 2) {
     shiftY += 1 * directionFactorY;
   } else {
     shiftY -= 1 * directionFactorY;
   }
   
-  angle += sliderAngle.value() * angleFactor;
+  angle += 0.3 * angleFactor;
 }
 
 function changeDirection() {
-  countSteps = random(sliderCountStepsMin.value(), sliderCountStepsMax.value());
+  countSteps = random(100, 300);
   directionFactorX = map(noise(random(0, 10)), 0, 1, -1, 1);
   directionFactorY = map(noise(random(0, 10)), 0, 1, -1, 1);
   angleFactor = random([-1, 0, 1]);
