@@ -14,23 +14,19 @@ let controlPoint2;
 let lineEnd;
 
 let pivot;
+let viewMiddle;
 let minX;
 let maxX;
 let minY;
 let maxY;
-
-let outlineMiddleRight;
-let outlineMiddleLeft; 
-let outlineMiddleLower;
-let outlineMiddleUpper;
 
 function setup() {
   createCanvas(400, 500);
   noFill();
   strokeWeight(1);
   background(230);
+
   frameRate(500);
-  
   sizeLine = 150;
   countSteps = random(300, 500);
   oldFrameCount = frameCount;
@@ -51,6 +47,11 @@ function setup() {
   maxX = (pivot.x + width  / 2) * 0.9;
   minY = (pivot.y - height / 2) * 0.9;
   maxY = (pivot.y + height / 2) * 0.9;
+  viewMiddle = createVector(0, 0);
+  // minX = (viewMiddle.x - width  / 2) * 0.9;
+  // maxX = (viewMiddle.x + width  / 2) * 0.9;
+  // minY = (viewMiddle.y - height / 2) * 0.9;
+  // maxY = (viewMiddle.y + height / 2) * 0.9;
 }
 
 function draw() {
@@ -64,23 +65,54 @@ function draw() {
   translate(width / 2 + shiftX, height / 2 + shiftY);
   createLine();
   
-  outlineMiddleRight = createVector(maxX - shiftX, minY - shiftY + height / 2 * 0.9);
-  outlineMiddleLeft  = createVector(minX - shiftX, minY - shiftY + height / 2 * 0.9);
-  outlineMiddleLower = createVector(minX - shiftX + width / 2 * 0.9, maxY - shiftY);
-  outlineMiddleUpper = createVector(minX - shiftX + width / 2 * 0.9, minY - shiftY);
+  push();
+  stroke(255, 69, 0, 20);
+  
+  //box
+  line(       0,        0, sizeLine,        0);
+  line(sizeLine,        0, sizeLine, sizeLine);
+  line(sizeLine, sizeLine,        0, sizeLine);
+  line(       0, sizeLine,        0,        0);
+  
+  strokeWeight(2);
+  
+  //view middle
+  viewMiddle = createVector(pivot.x - shiftX, pivot.y - shiftY);
+  point(viewMiddle);
+  
+  push();
+  stroke(0,153,0, 200);
+  line(viewMiddle.x, viewMiddle.y, pivot.x, pivot.y);
+  let outlineMiddleRight = createVector(maxX - shiftX, minY - shiftY + height / 2 * 0.9);
+  let outlineMiddleLeft = createVector(minX - shiftX, minY - shiftY + height / 2 * 0.9);
+  let outlineMiddleLower = createVector(minX - shiftX + width / 2 * 0.9, maxY - shiftY);
+  let outlineMiddleUpper = createVector(minX - shiftX + width / 2 * 0.9, minY - shiftY);
+  pop();
+  
+  //outlines
+  line(minX - shiftX, minY - shiftY, maxX - shiftX, minY - shiftY); //upper line
+  line(maxX - shiftX, minY - shiftY, maxX - shiftX, maxY - shiftY); //right line
+  line(maxX - shiftX, maxY - shiftY, minX - shiftX, maxY - shiftY); //lower line
+  line(minX - shiftX, maxY - shiftY, minX - shiftX, minY - shiftY); //left line
+  
+  pop();
 
   if(pivot.x < outlineMiddleRight.x - sizeLine && outlineMiddleLeft.x < pivot.x) {
+    console.log("x+");
     shiftX += 1 * directionFactorX;
   } else {
     shiftX -= 1 * directionFactorX;
     changeDirection();
+    console.log("x-");
   }
   
   if(pivot.y < outlineMiddleLower.y - sizeLine && outlineMiddleUpper.y < pivot.y) {
+    console.log("y+");
     shiftY += 1 * directionFactorY;
   } else {
     shiftY -= 1 * directionFactorY;
     changeDirection();
+    console.log("y-");
   }
 }
 
@@ -94,6 +126,7 @@ function changeDirection() {
 }
 
 function createLine() {
+
   beginShape();
   //Line start point
   vertex(lineStart.x, lineStart.y);
@@ -114,4 +147,10 @@ function createLine() {
     lineEnd.y,
   );
   endShape();
+
+  push();
+  stroke('red');
+  strokeWeight(2);
+  point(lineStart.x, lineStart.y);
+  pop();
 }
