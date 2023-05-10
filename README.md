@@ -42,3 +42,8 @@ Für mich hat die Betrachtung von Roman Verostko's Cyber Flowers ispiriert, etwa
 
 ### Prozessschritte
 ![Generiere Linien](img/v1.png)  ![Generiere Linien](img/v2.png) 
+  
+Version 1: Zeichne dieselbe Linie wiederholt entlang eines zufälligen Pfades.
+Version 2: Füge Farbe hinzu.
+Version 3: Hau nicht ab!
+Version 4: Finale Version?
