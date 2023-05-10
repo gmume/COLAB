@@ -1,5 +1,4 @@
-# COLAB
-## Vorprojekt
+# Vorprojekt
 
 ## Inspiration / Originalwerk
 ### »Cyber Flowers« by Roman Verostko
