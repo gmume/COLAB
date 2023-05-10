@@ -41,9 +41,15 @@ In V5 kommt die organische Veränderung der Basislinie und ein bisschen grafisch
 Für mich hat die Betrachtung von Roman Verostko's Cyber Flowers ispiriert, etwas in dieser Art zu kreieren. Meine Weiterentwicklung sollte allerdings Vorteile berücksichtigen, die die rein digitale Umsetzung mit sich bringt. Damit meine ich Möglichkeiten, die Verostko nicht hatte, da er seine Stücke physisch plottete. Einer dieser digitalen Vorteile, den ich nutzen wollte, war, dass ich die Möglichkeit habe Farbverläufe hinzuzufügen. Ein Anderer, dass es auf einem Bildschirm möglich ist, bereits Gezeichnetes wieder verschwinden zu lassen. Da mich die Cyber Flowers an Tüll oder Tagesvorhänge erinnern, die sich im Wind bewegen, war mir bereits zu Beginn klar, dass ich diesen Eindruck von sich im Wind bauschendenm, feinem Stoff in einer Animation umsetzen wollte. Während meiner Arbeit begegnete ich zwei Problemen. Das Eine war, dass sich die Linie, die fortlaufend wiederholt gezeichnet wird, mitunter aus dem sichtbaren Bereich bewegt und das Andere war, dass die Bewegung nicht eckig/architektonisch, sondern organisch ausfiel. Zum Schluss lief mir etwas die Zeit davon, um beide Probleme vereint in einer Version zu lösen. Allerdings begeisterten mich die Nebenerzeugnisse, obwohl sie weit weg vom Ziel waren.
 
 ### Prozessschritte
-![Generiere Linien](img/v1.png)  ![Generiere Linien](img/v2.png) 
+![Generiere Linien](img/img1.png)  ![Generiere Linien](img/img2.png) 
   
 Version 1: Zeichne dieselbe Linie wiederholt entlang eines zufälligen Pfades.
+![Generiere Linien](img/v1.png) 
+  
 Version 2: Füge Farbe hinzu.
+![Generiere Linien](img/v2.png) 
+  
 Version 3: Hau nicht ab!
+![Generiere Linien](img/v3a.png) ![Generiere Linien](img/v3b.png) 
+  
 Version 4: Finale Version?
