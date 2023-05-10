@@ -1,3 +1,4 @@
+let rot = 0;
 let angle = 0;
 let countSteps;
 let oldFrameCount;
@@ -12,11 +13,15 @@ let lineMiddle;
 let controlPoint2;
 let lineEnd;
 
+let colorSlider;
+
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  frameRate(40);
+  frameRate(150);
+
   angleMode(DEGREES);
   noFill();
+  stroke(100, 100, 100, 100);
   strokeWeight(1);
 
   countSteps = random(5, 100);
@@ -34,12 +39,11 @@ function setup() {
 }
 
 function draw() {
-  
+
   if(frameCount > oldFrameCount + countSteps) {
     changeDirection();
   }
 
-  stroke(100, angle % 100, angle % 100, 80);
   translate(width / 2 + shiftX, height / 2 + shiftY);
   rotate(angle % 360);
   createLine();
