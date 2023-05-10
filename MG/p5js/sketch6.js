@@ -14,7 +14,7 @@ let lineEnd;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  frameRate(20);
+  frameRate(200);
   stroke("black");
   strokeWeight(5);
   angleMode(DEGREES);
