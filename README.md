@@ -15,12 +15,9 @@ Wir fanden den Ansatz spannend, dass aus einer beliebigen einfachen Linie ein gr
 
 
 ## Werk Sandro
-
 ### Kommentar zum Werk
 
 Ich war fasziniert davon, baseierend auf einer linie ein Kunstwerk zu zeichnen. Dabei habe ich mir überlegt den prozess gerade zu Invertieren. Ich generiere eine beliebige linie, aber lasse dem User, in diesem Fall auch dem Autor des individellen Kunstwerks die kontrolle über die bewegung der Linie, welche das Kunstwerk zeichnet. Die kontrolle der linie wirkt aber bewusst organisch und etwas selbstlebend. Dies erwekt beim User gleicherweise ein wie in der Analyse beschriebenes gefühl der inkompletten kontrolle und einer gewissen machtlosigkeit. Ich habe mich bewusst dagegen entschieden, dass die Form jemals komplett statisch wird oder als Bild gespeichert werden könnte. Damit bleibt die Form letzten unkontrollierbar und unfesthaltbar, Wobei man sich im digitalen raum eigentlich gewöhnt währe, dass alles festgehalten werden kann und auch wird. Durch die Veränderlichkeit der Form wird auch die Frage "was ist das?" differenziert beleuchtet. Statische definitionen von wahrgenommenen Objekten werden in Frage gestellt.
-
-
 ### Prozessschritte
 
 Auf dem Weg zu meinem Finalen Resultat habe ich 5 einzelne Prozessschritte/Varianten gesichert. Diese machen meinen Lernprozess mit p5js und die kreative visionsfindung für das Endresultat sichtbar.
